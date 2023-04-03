@@ -15,7 +15,7 @@
 	<PackageProjectUrl>https://github.com/andersoncostadev/money-extension</PackageProjectUrl>
 	<PackageIconUrl>icon.png</PackageIconUrl>
 	<PackageTags>money;int;decimal;converter</PackageTags>
-	<Title>Money Extensions</Title>
+	<Title>Money Extensions Costa Companys</Title>
 	<Summary>Extension to convert decimal to integer</Summary>  
   </PropertyGroup>
 
