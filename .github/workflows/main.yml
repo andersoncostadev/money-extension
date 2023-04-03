@@ -1,30 +1,30 @@
-name: build and deploy package
+name: Build and deploy package
 
 on:
   push:
     branches:
-     -  master
+      - master
 
-  jobs:
-    build-and-deploy:
-      runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    stepes:
+    steps:
       - uses: actions/checkout@master
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '7.0.x'
+        run: dotnet build --configuration Release
 
-     - name: Build with dotnet
-       run : dotnet build --configuration Release   
+      - name: Test
+        run: dotnet test
 
-     - name: Test
-       run: dotnet test 
 
-     - name: Create the Package
-       run: dotnet pack --configuration Release  
+      - name: Create the Package
+        run: dotnet pack --configuration Release 
+        
 
-    - name: Publish
-      run: dotnet nuget push "MoneyExtension/bin/Release/*.nupkg" -K ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      - name: Publish
+        run: dotnet nuget push "MoneyExtension/bin/Release/*.nupkg" -K ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+
+    
